@@ -11,6 +11,7 @@
     "@testing-library/user-event": "^12.1.10",
     "apollo-cache-inmemory": "^1.6.6",
     "apollo-client": "^2.6.10",
+    "apollo-link-context": "^1.0.20",
     "apollo-link-http": "^1.5.17",
     "bootstrap": "^4.6.0",
     "jwt-decode": "^3.1.2",
@@ -46,5 +47,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy" :  "https://still-lake-12021.herokuapp.com/"
+  "proxy": "https://still-lake-12021.herokuapp.com/"
 }
