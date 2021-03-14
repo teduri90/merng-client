@@ -40,7 +40,7 @@ const UserBar = () => {
     };
 
     return (
-        <div style={{display:"flex", maringLeft:"50px", marginTop:"70px", paddingTop:"10px", paddingBottom:"10px", borderRadius:"10px", backgroundColor:"#F5F5F5", height:"100%", width:"100%", overflow:"auto"}}>
+        <div style={{display:"flex", border:"1px solid #3f51b5", borderRadius:"10px",maringLeft:"50px", marginTop:"70px", paddingTop:"10px", paddingBottom:"10px", borderRadius:"10px", backgroundColor:"#F5F5F5", height:"100%", width:"100%", overflow:"auto"}}>
             {loading ? "loading" : error ? "error" : getUsers.map(e => 
                 <div key={e.id} style={{textAlign:"center", marginRight:"20px", alignContent:"center", alignItems:"center", justifyContent:"center", justifyItems:"center"}}>
                     <button className={(userSelect.find(z => z === e.username)) ? (classes.custom_button_selected) : (classes.custom_button)} onClick={() => userSelector(e.username)}>

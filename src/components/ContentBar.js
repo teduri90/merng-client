@@ -38,7 +38,7 @@ const ContentBar = () => {
       <>
       <Hidden smUp>
       <Grid>
-        <div style={{ height:"150px", overflow:"auto"}}>
+        <div style={{border:"1px solid #3f51b5",height:"150px", overflow:"auto"}}>
         <Box overflow="auto" alignContent="right" alignItems="right" alignSelf="right"> 
         {loading ? "loading" : error ? "error" :  
           temporary.map(e=> 
@@ -50,7 +50,7 @@ const ContentBar = () => {
                   title="Contemplative Reptile"
                 />
                 <CardContent>
-                  <div style={{borderWidth:"10px", borderColor:"black", paddingTop:"2px", paddingBottom:"2px", marginBottom:"5px", alignContent:"center", alignItems:"center",textAlign:"center", color:"#3f51b5", textAlign:"center", display:"flex"}}>
+                  <div style={{borderRadius:"10px", paddingTop:"2px", paddingBottom:"2px", marginBottom:"5px", alignContent:"center", alignItems:"center",textAlign:"center", color:"#3f51b5", textAlign:"center", display:"flex"}}>
                     <img src={e.image} style={{width:"30px", height:"30px", marginRight:"10px"}}></img>
                     <Typography gutterBottom variant="h7" component="h4">{e.username}</Typography>
                     <Divider orientiation="" />  
@@ -72,7 +72,7 @@ const ContentBar = () => {
 
       <Hidden only="xs">
       <Grid>
-      <div style={{ height:"600px", overflow:"auto"}}>
+      <div style={{borderRadius:"10px", marginTop:"5px", border:"1px solid #3f51b5", height:"600px", overflow:"auto"}}>
       <Box overflow="auto" alignContent="right" alignItems="right" alignSelf="right"> 
       {loading ? "loading" : error ? "error" :  
         temporary.map(e=> 
