@@ -24,6 +24,7 @@ import CardTravelIcon from '@material-ui/icons/CardTravel';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import InputBase from '@material-ui/core/InputBase';
+import Hidden from '@material-ui/core/Hidden';
 
 import { contextProp } from '../context/ContextProp';
 import { AuthContext } from '../context/auth';
@@ -163,9 +164,11 @@ export default function SideBar() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap>
-            RECOMMENED
-          </Typography>
+          <Hidden only="xs">
+            <Typography variant="h6" noWrap>
+              RECOMMENED
+            </Typography>
+          </Hidden>
             <MenuItem component={Link} to="/" onClick={() => setZoomLevel("8")}>
                 HOME
             </MenuItem>
@@ -198,9 +201,11 @@ export default function SideBar() {
               {context.user && <MenuItem onClick={context.logout}>
                   LOGOUT
               </MenuItem>}
+              {/*
               {context.user ? "" :<MenuItem component={Link} to="/register">
                   REGISTER
               </MenuItem>}
+              */}
             <Menu>
               
               <MenuItem>

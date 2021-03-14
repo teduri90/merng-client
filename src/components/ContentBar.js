@@ -8,6 +8,8 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
+import Grid from '@material-ui/core/Grid';
+import Hidden from '@material-ui/core/Hidden';
 
 import { contextProp } from '../context/ContextProp';
 import { rgbToHex } from '@material-ui/core';
@@ -33,9 +35,47 @@ const ContentBar = () => {
     };
 
     return (
-      <Box overflow="auto" alignContent="right" alignItems="right" alignSelf="right" style={{['@media (min-width:780px)']:{width:"0%"}}}> 
+      <>
+      <Hidden smUp>
+      <Grid>
+        <div style={{ height:"150px", overflow:"auto"}}>
+        <Box overflow="auto" alignContent="right" alignItems="right" alignSelf="right"> 
+        {loading ? "loading" : error ? "error" :  
+          temporary.map(e=> 
+              <Card onClick={() => triggerer(e)}>
+              <Divider />
+              <CardActionArea>
+                <CardMedia
+                  image="/static/images/cards/contemplative-reptile.jpg"
+                  title="Contemplative Reptile"
+                />
+                <CardContent>
+                  <div style={{borderWidth:"10px", borderColor:"black", paddingTop:"2px", paddingBottom:"2px", marginBottom:"5px", alignContent:"center", alignItems:"center",textAlign:"center", color:"#3f51b5", textAlign:"center", display:"flex"}}>
+                    <img src={e.image} style={{width:"30px", height:"30px", marginRight:"10px"}}></img>
+                    <Typography gutterBottom variant="h7" component="h4">{e.username}</Typography>
+                    <Divider orientiation="" />  
+                    <div style={{marginLeft:"10px", textAlign:"center", width:"100%", color:"black", backgroundColor:"#E0E0E0", opacity:"0.8"}}><Typography gutterBottom variant="h8" component="h4">
+                      {e.body} <br /> ({e.category})
+                    </Typography>
+                    </div>
+                  </div>
+                  <Typography variant="body2" color="textSecondary" component="p">
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+              
+            </Card>
+            )}    
+        </Box></div>
+      </Grid>
+      </Hidden>
+
+      <Hidden only="xs">
+      <Grid>
+      <div style={{ height:"600px", overflow:"auto"}}>
+      <Box overflow="auto" alignContent="right" alignItems="right" alignSelf="right"> 
       {loading ? "loading" : error ? "error" :  
-         temporary.map(e=> 
+        temporary.map(e=> 
             <Card onClick={() => triggerer(e)}>
             <Divider />
             <CardActionArea>
@@ -58,8 +98,10 @@ const ContentBar = () => {
             
           </Card>
           )}    
-      </Box>
-
+      </Box></div>
+      </Grid>
+      </Hidden>
+      </>
 
     )
 }
