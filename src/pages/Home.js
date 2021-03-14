@@ -6,6 +6,7 @@ import ContentBar from '../components/ContentBar';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import Hidden from '@material-ui/core/Hidden';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -26,13 +27,20 @@ export default function Home() {
         <div style={{marginLeft:"75px"}}>
         <UserBar />
         <Grid container>
-          <Grid item xs={8}>
+          <Grid item xs={12} sm={8}>
             <KakaoMaps />
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={0} sm={4}>
             <ContentBar />
           </Grid>
         </Grid>
+        <Hidden xsUp>
+          <Grid container>
+            <Grid item xs={12} >
+              <ContentBar />
+            </Grid>
+          </Grid>
+        </Hidden>
         </div>
       </div>
     );

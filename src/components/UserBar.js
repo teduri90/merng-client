@@ -44,7 +44,7 @@ const UserBar = () => {
             {loading ? "loading" : error ? "error" : getUsers.map(e => 
                 <div key={e.id} style={{textAlign:"center", marginRight:"20px", alignContent:"center", alignItems:"center", justifyContent:"center", justifyItems:"center"}}>
                     <button className={(userSelect.find(z => z === e.username)) ? (classes.custom_button_selected) : (classes.custom_button)} onClick={() => userSelector(e.username)}>
-                    <img src={e.image} alt="" style={{width:"80px", height:"80px", borderRadius:"30px"}}/> <br/>
+                    <img src={e.image} alt="" style={{width:"50px", height:"50px", borderRadius:"30px"}}/> <br/>
                     <b2>{e.username}</b2>
                     </button>
                 </div>)}

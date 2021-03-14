@@ -33,7 +33,7 @@ const ContentBar = () => {
     };
 
     return (
-      <Box overflow="auto" alignContent="right" alignItems="right" alignSelf="right"> 
+      <Box overflow="auto" alignContent="right" alignItems="right" alignSelf="right" style={{['@media (min-width:780px)']:{width:"0%"}}}> 
       {loading ? "loading" : error ? "error" :  
          temporary.map(e=> 
             <Card onClick={() => triggerer(e)}>

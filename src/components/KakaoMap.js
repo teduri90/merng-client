@@ -212,7 +212,7 @@ function KakaoMaps(props) {
 
   return (
     <>
-    <div id="container" style={{width:"100%", height:"700px"}} ref={container} />
+    <div id="container" style={{width:"100%", minHeight:"300px", height:"80%"}} ref={container} />
     <div style={{marginLeft:"80px"}}>
     </div>
     <MarkerPage open={open} setOpen={setOpen} X={X} Y={Y} placeName33={placeName33} ></MarkerPage>
