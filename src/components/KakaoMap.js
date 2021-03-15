@@ -6,6 +6,7 @@ import { contextProp } from '../context/ContextProp';
 
 import RestaurantIcon from '@material-ui/icons/Restaurant';
 import MarkerPage from '../pages/MarkerPage';
+import { GpsFixed } from "@material-ui/icons";
 
 function KakaoMaps(props) {
   const {loading, error, getMarkers, userSelect, placeName, categorySelect, getUsers, zoomLevel, selectLat, selectLng} = useContext(contextProp);
@@ -159,6 +160,7 @@ function KakaoMaps(props) {
       return;
     }
     
+    
     const ps = new kakao.maps.services.Places();
 
     ps.keywordSearch(placeName, placesSearchCB); 
@@ -182,7 +184,17 @@ function KakaoMaps(props) {
             }       
             // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
             //kakaoMap.setBounds(bounds);
-        } 
+        } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
+
+          alert('검색 결과가 존재하지 않습니다.');
+          return;
+  
+      } else if (status === kakao.maps.services.Status.ERROR) {
+  
+          alert('검색 결과 중 오류가 발생했습니다.');
+          return;
+  
+      }
       }
 
       function displayMarker(place) {                   
@@ -207,12 +219,57 @@ function KakaoMaps(props) {
           });
       }
 
+      function getCurrentLocation(){
+      if ('geolocation' in navigator) {
+        // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+        navigator.geolocation.getCurrentPosition(function(position) {
+            var lat = position.coords.latitude, // 위도
+                lon = position.coords.longitude; // 경도
+            var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합 
+        니다
+                message = '<div style="padding:5px;">여기에 계신가요?!</div>'; // 인포윈도우에 표시될 내용입니다
+            // 마커와 인포윈도우를 표시합니다
+            displayMarker2(locPosition);
+            
+          });
+    
+    } else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
+        var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),    
+             message = 'geolocation을 사용할수 없어요..'
+        displayMarker2(locPosition, message);
+    }};
+
+    function displayMarker2(locPosition, message) {
+      // 마커를 생성합니다
+      var marker = new kakao.maps.Marker({  
+          map: kakaoMap, 
+          position: locPosition
+      }); 
+      
+      var iwContent = message, // 인포윈도우에 표시할 내용
+          iwRemoveable = true;
+  
+      // 인포윈도우를 생성합니다
+      var infowindow = new kakao.maps.InfoWindow({
+          content : iwContent,
+          removable : iwRemoveable
+      });
+      
+      // 인포윈도우를 마커위에 표시합니다 
+      infowindow.open(kakaoMap, marker);
+      
+      // 지도 중심좌표를 접속위치로 변경합니다
+      kakaoMap.setCenter(locPosition);      
+  }    
+    
+
       // IF문 종료
   }, [placeName])
 
   return (
     <>
     <div id="container" style={{borderRadius:"10px", marginTop:"5px", border:"1px solid #3f51b5",width:"100%", minHeight:"300px", height:"100%"}} ref={container} />
+    <div style={{position:"absolute", zIndex:"500", top:"180px", left:"90px",}}><button>현재 위치 확인</button></div>
     <div style={{marginLeft:"80px"}}>
     </div>
     <MarkerPage open={open} setOpen={setOpen} X={X} Y={Y} placeName33={placeName33} ></MarkerPage>
