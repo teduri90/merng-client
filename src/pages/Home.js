@@ -27,7 +27,7 @@ export default function Home() {
         <div style={{marginLeft:"75px"}}>
         <UserBar />
         <Grid container>
-          <Grid item xs={12} sm={8}>
+          <Grid item xs={10} sm={8}>
             <KakaoMaps />
           </Grid>
           <Grid item xs={0} sm={4}>
