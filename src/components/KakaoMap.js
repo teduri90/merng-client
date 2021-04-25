@@ -29,7 +29,7 @@ function KakaoMaps(props) {
   const [placeName33, setPlaceName33] = useState([]);
   
 
-  console.log(userSelect);
+  //console.log(userSelect);
 
   
   useEffect(() => {
@@ -176,6 +176,9 @@ function KakaoMaps(props) {
             }
 
             setPlaceName22([]);
+
+            console.log("ABCD");
+            console.log(data);
           
             var bounds = new kakao.maps.LatLngBounds();
             for (var i=0; i<data.length; i++) {
@@ -206,8 +209,8 @@ function KakaoMaps(props) {
           });
 
           setPlaceName22(placeName22.concat(marker2));
-          console.log("placename");
-          console.log(placeName22);
+          //console.log("placename");
+          //console.log(placeName22);
           
           new kakao.maps.event.addListener(marker2, 'click', function() {
             console.log(place.y, place.x);

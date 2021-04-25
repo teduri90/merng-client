@@ -16,8 +16,12 @@ import { rgbToHex } from '@material-ui/core';
 import { set } from 'mongoose';
 
 const ContentBar = () => {  
+
+
     const {categorySelect, setCategorySelect, userSelect, setUserSelect, loading, getMarkers, error, getUsers, setZoomLevel, setSelectLat, setSelectLng } = useContext(contextProp);
 
+
+    
     var temporary;
     if(getMarkers){
       if(userSelect.length > 0){
